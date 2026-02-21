@@ -1,8 +1,8 @@
 import  { useState } from 'react'
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
+import { FormControl } from 'react-bootstrap'
+import Formlivre from './Formlivre'
+import Affichelivre from './Affichelivre'
+
 const Listlivres = () => {
     const[livres,setLivres]=useState([
      {
@@ -40,97 +40,13 @@ const Listlivres = () => {
     }
   return (
     <div>
+
       <h1>Liste des livres</h1>
-      <Form >
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4">
-          <Form.Label>ISBN</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="ISBN"
-            value={liv.isbn}
-            onChange={(e)=>setliv({...liv,isbn:e.target.value})}
-            
-          />
-          
-        </Form.Group>
-        <Form.Group as={Col} md="4" >
-          <Form.Label>Titre</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Titre"
-            value={liv.titre}
-            onChange={(e)=>setliv({...liv,titre:e.target.value})}
-          />
-          
-        </Form.Group>
-        <Form.Group as={Col} md="4" >
-          <Form.Label>Auteur</Form.Label>
-          
-            <Form.Control
-              type="text"
-              placeholder="Auteur"
-              required
-              value={liv.auteur}
-              onChange={(e)=>setliv({...liv,auteur:e.target.value})}
-            />
-            
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="6" >
-          <Form.Label>Prix</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Prix" 
-          required 
-          value={liv.prix}
-          onChange={(e)=>setliv({...liv,prix:e.target.value})}
-          />
-          
-        </Form.Group>
-        <Form.Group as={Col} md="3" >
-          <Form.Label>Image</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Image" 
-          value={liv.image}
-          onChange={(e)=>setliv({...liv,image:e.target.value})}
-          />
-          
-        </Form.Group>
-        
-      </Row>
-            
-    </Form>
+      <Formlivre liv={liv} setliv={setliv}/>
         <button className='btn btn-success' onClick={()=>handleAdd()}>Ajouter</button>
-        <table className='table table-striped'>
-            <thead>
-                <tr>
-                    <th>Isbn</th>
-                    <th>Titre</th>
-                    <th>Auteur</th> 
-                    <th>Prix</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {livres.map((l,index) => 
-                <tr key={index}>
-                    <td>{l.isbn}</td>
-                    <td>{l.titre}</td>
-                    <td>{l.auteur}</td>
-                    <td>{l.prix}</td>
-                    <td><img src={l.image} alt={l.titre} width="100"/></td>
-                    <td><button className='btn btn-danger' onClick={()=>handleDelete(l.isbn)}>Delete</button></td>
-                </tr>
-                )}
-            </tbody>
-        </table>
-        {liv.isbn} {liv.titre} {liv.auteur} {liv.prix} {liv.image}
+
+      <Affichelivre livres={livres} handleDelete={handleDelete}/>
+        
     </div>
   )
 }

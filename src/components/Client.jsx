@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Article from "./Article"
+import Afficheclient from "./Afficheclient"
 
 const Client=()=> {
     const[cin,setCin]=useState("098978766")
@@ -12,12 +13,13 @@ const Client=()=> {
     }
   return (
     <>
-      <h1>Client</h1>
-      <p>CIN: {cin}</p>
-      <p>Nom: {nom}</p>
-      <p>Email: {email}</p>
-      <button onClick={()=>handleChange()}>Changer</button>
-      <Article />
+      <Afficheclient
+      cin={cin}
+      nom={nom}
+      email={email}
+      handleChange={handleChange}
+      />
+      
     </>
   )
 }

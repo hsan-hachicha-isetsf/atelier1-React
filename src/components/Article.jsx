@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Affichearticle from "./Affichearticle"
 
 const Article=()=> {
     const [art, setArt] = useState({
@@ -12,12 +13,12 @@ const Article=()=> {
     }
   return (
     <>
-      <h1>Article</h1>
-      <p>Reference: {art.reference}</p>
-      <p>Designation: {art.designation}</p>
-      <p>Prix: {art.prix}</p>
-      <button onClick={() => handleUpdate()}>Changer</button>
-
+      
+    <Affichearticle 
+    reference={art.reference}
+    designation={art.designation}
+    prix={art.prix}
+     handleUpdate={handleUpdate}/>
     </>
   )
 }
